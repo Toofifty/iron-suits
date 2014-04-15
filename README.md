@@ -96,6 +96,8 @@ Makes energy from coal/wood or from energy inputs (from other mods)
 
 ### Iron Man's Armor Sets
 
+These will probably come later in the form of an addon or expansion to the mod
+
 * Can be crafted with specific modules and dyes in the assembly table
 * Have a high module capacity but are much more difficult to make -
 	* Requiring nuclear storage units, perfect arc reactors, along with suit-specific modules
