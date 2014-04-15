@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ironsuits",
+  "name": "Toofifty's Iron Suits",
+  "description": "Adds a new range of low to high level metal armour.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "ironsuits.toofifty.me",
+  "updateUrl": "",
+  "authors": ["Toofifty"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

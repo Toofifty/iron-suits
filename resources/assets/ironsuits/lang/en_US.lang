@@ -1,0 +1,35 @@
+tile.iron_workbench.name=Iron Crafting Table
+tile.osmium_ore.name=Osmium Ore
+tile.osmium_block.name=Block of Osmium
+tile.alloy_smeltery_idle.name=Alloy Smeltery
+tile.grinder.name=Grinder
+tile.assembly_table.name=Assembly Table
+
+item.grinder_head.name=Grinder Head
+item.steel_ingot.name=Steel Ingot
+item.copper_ingot.name=Copper Ingot
+item.osmium_ingot.name=Osmium Ingot
+item.tin_ingot.name=Tin Ingot
+
+item.exo_bronze_helmet.name=Bronze Exo Headpiece
+item.exo_bronze_chest.name=Bronze Exo Body
+item.exo_bronze_legs.name=Bronze Exo Legs
+item.exo_bronze_boots.name=Bronze Exo Boots
+
+item.exo_iron_helmet.name=Iron Exo Headpiece
+item.exo_iron_chest.name=Iron Exo Body
+item.exo_iron_legs.name=Iron Exo Legs
+item.exo_iron_boots.name=Iron Exo Boots
+
+item.exo_gold_helmet.name=Gold Exo Headpiece
+item.exo_gold_chest.name=Gold Exo Body
+item.exo_gold_legs.name=Gold Exo Legs
+item.exo_gold_boots.name=Gold Exo Boots
+
+item.exo_steel_helmet.name=Steel Exo Headpiece
+item.exo_steel_chest.name=Steel Exo Body
+item.exo_steel_legs.name=Steel Exo Legs
+item.exo_steel_boots.name=Steel Exo Boots
+
+itemGroup.IronSuits.name=Iron Suits
+container.alloy_smeltery=Alloy Smeltery
