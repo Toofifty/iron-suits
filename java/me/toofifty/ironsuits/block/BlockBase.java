@@ -8,13 +8,12 @@ import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockOreOsmium extends Block {
+public class BlockBase extends Block {
 	
-	public BlockOreOsmium(Material par1Material) {
+	public BlockBase(Material par1Material, String name) {
 		super(par1Material);
 		this.setCreativeTab(IronSuits.tabIronSuits);
-		this.setHardness(10);
-		this.setResistance(50);
+		this.setBlockName(name);
 	}
 
 	@SideOnly(Side.CLIENT)

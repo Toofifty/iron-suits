@@ -6,11 +6,13 @@
 
 package me.toofifty.ironsuits.model;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelExoLegs extends ModelBiped {
+public class ModelExoLegs extends ModelArmorBase {
 	// fields
 	ModelRenderer leftbeltbrace;
 	ModelRenderer leftknee;
@@ -26,7 +28,7 @@ public class ModelExoLegs extends ModelBiped {
 	ModelRenderer right;
 
 	public ModelExoLegs(float f) {
-		super(f, 0, 64, 32);
+		super(f);
 		textureWidth = 64;
 		textureHeight = 32;
 
@@ -130,10 +132,47 @@ public class ModelExoLegs extends ModelBiped {
 		this.bipedRightLeg.addChild(rightbeltbraceback);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3,
 			float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+	}
+	
+	public void defaultRender(float f) {
+		left.render(f);
+		leftbeltbrace.render(f);
+		leftknee.render(f);
+		leftbeltbraceout.render(f);
+		leftkneeconnector.render(f);
+		leftbeltbraceback.render(f);
+		
+		right.render(f);
+		rightbeltbrace.render(f);
+		rightknee.render(f);
+		rightbeltbraceout.render(f);
+		rightkneeconnector.render(f);
+		rightbeltbraceback.render(f);
+	}
+	
+	public void renderInventory(float f) {
+		GL11.glTranslatef(0.2F, -0.5F, 0F);
+		
+		left.render(f);
+		leftbeltbrace.render(f);
+		leftknee.render(f);
+		leftbeltbraceout.render(f);
+		leftkneeconnector.render(f);
+		leftbeltbraceback.render(f);
+		
+		GL11.glTranslatef(-0.4F, 0F, 0F);
+		
+		right.render(f);
+		rightbeltbrace.render(f);
+		rightknee.render(f);
+		rightbeltbraceout.render(f);
+		rightkneeconnector.render(f);
+		rightbeltbraceback.render(f);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z) {

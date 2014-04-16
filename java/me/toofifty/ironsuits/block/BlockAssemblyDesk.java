@@ -2,7 +2,7 @@ package me.toofifty.ironsuits.block;
 
 import me.toofifty.ironsuits.client.ClientProxy;
 import me.toofifty.ironsuits.common.IronSuits;
-import me.toofifty.ironsuits.tileentity.TileEntityAssemblyTable;
+import me.toofifty.ironsuits.tileentity.TileEntityAssemblyDesk;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,12 +12,13 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockAssemblyTable extends BlockContainer {
+public class BlockAssemblyDesk extends BlockContainer {
 
-	public BlockAssemblyTable(Material material, String blockName) {
+	public BlockAssemblyDesk(Material material, String blockName) {
 		super(material);
 		this.setBlockName(blockName);
 		this.setCreativeTab(IronSuits.tabIronSuits);
+		this.setBlockBounds(1/16F, 0F, 1/16F, 15/16F, 15/16F, 15/16F);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -28,7 +29,7 @@ public class BlockAssemblyTable extends BlockContainer {
 	public boolean isOpaqueCube() { return false; }
 	
 	public int getRenderType() {
-		return ClientProxy.assemblyTableRenderID;
+		return ClientProxy.assemblyDeskRenderID;
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -38,7 +39,6 @@ public class BlockAssemblyTable extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
-		return new TileEntityAssemblyTable();
+		return new TileEntityAssemblyDesk();
 	}
-
 }

@@ -96,11 +96,7 @@ public class BlockAlloySmeltery extends BlockContainer {
 		if (par1World.isRemote) {
 			return true;
 		} else if (!par5EntityPlayer.isSneaking()) {
-			TileEntityAlloySmeltery teas = (TileEntityAlloySmeltery)par1World.getTileEntity(par2, par3, par4);
-			if (teas != null) {
-				//FMLNetworkHandler.openGui(par5EntityPlayer, IronSuits.instance, IronSuits.guiAlloySmeltery, par1World, par2, par3, par4);
-				par5EntityPlayer.openGui(IronSuits.instance, IronSuits.guiAlloySmeltery, par1World, par2, par3, par4);
-			}
+			par5EntityPlayer.openGui(IronSuits.instance, IronSuits.guiAlloySmeltery, par1World, par2, par3, par4);
 			return true;
 		}
 		return false;

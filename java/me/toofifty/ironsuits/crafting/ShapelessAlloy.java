@@ -24,14 +24,17 @@ public class ShapelessAlloy implements IRecipe {
 		return this.recipeOutput;
 	}
 
-	@Override
-	public boolean matches(InventoryCrafting var1, World var2) {
+	public ItemStack getCraftingResult(InventoryCrafting var1) {
+        return this.recipeOutput.copy();
+	}
 
+	public boolean matches(InventoryCrafting par1InventoryCrafting, World var2) {
 		ArrayList arraylist = new ArrayList(this.recipeItems);
 
 		for (int i = 0; i < 2; ++i) {
 			for (int j = 0; j < 2; ++j) {
-				ItemStack itemstack = var1.getStackInRowAndColumn(j, i);
+				ItemStack itemstack = par1InventoryCrafting
+						.getStackInRowAndColumn(j, i);
 
 				if (itemstack != null) {
 					boolean flag = false;
@@ -61,15 +64,8 @@ public class ShapelessAlloy implements IRecipe {
 	}
 
 	@Override
-	public ItemStack getCraftingResult(InventoryCrafting var1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int getRecipeSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.recipeItems.size();
 	}
 
 }

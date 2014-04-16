@@ -1,15 +1,20 @@
 tile.iron_workbench.name=Iron Crafting Table
 tile.osmium_ore.name=Osmium Ore
+tile.copper_ore.name=Copper Ore
+tile.tin_ore.name=Tin Ore
 tile.osmium_block.name=Block of Osmium
 tile.alloy_smeltery_idle.name=Alloy Smeltery
 tile.grinder.name=Grinder
 tile.assembly_table.name=Assembly Table
+tile.assembly_desk.name=Assembly Desk
 
 item.grinder_head.name=Grinder Head
 item.steel_ingot.name=Steel Ingot
 item.copper_ingot.name=Copper Ingot
 item.osmium_ingot.name=Osmium Ingot
 item.tin_ingot.name=Tin Ingot
+item.bronze_ingot.name=Bronze Ingot
+item.circuit.name=Basic Chipset
 
 item.exo_bronze_helmet.name=Bronze Exo Headpiece
 item.exo_bronze_chest.name=Bronze Exo Body

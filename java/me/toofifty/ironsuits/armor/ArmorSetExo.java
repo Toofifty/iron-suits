@@ -1,6 +1,7 @@
 package me.toofifty.ironsuits.armor;
 
 import me.toofifty.ironsuits.common.IronSuits;
+import me.toofifty.ironsuits.model.ModelArmorBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -8,41 +9,50 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorSetExo extends ItemArmor {
 
+	private String name;
+
 	public ArmorSetExo(ArmorMaterial par1ArmorMaterial,
 			int par2, int par3, String par4Str) {
 		super(par1ArmorMaterial, par2, par3);
+		armorModel = IronSuits.proxy.getArmorModel(par3);
 		this.setCreativeTab(IronSuits.tabIronSuits);
 		this.setMaxStackSize(1);
 		this.material = par1ArmorMaterial;
 		this.setUnlocalizedName(par4Str);
 		this.setMaxDamage(par1ArmorMaterial.getDurability(par3));
+		this.setFull3D();
+		this.name = par4Str;
 		par1ArmorMaterial.getDamageReductionAmount(par3);
+		resourceLocation = new ResourceLocation(IronSuits.ID, "textures/models/armor/" + par4Str + ".png");
 
 	}
+	
+	public ResourceLocation resourceLocation;
 
 	public ArmorMaterial material;
 
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot,
 			String type) {
-		return IronSuits.ID + ":textures/models/armor/" + this.getUnlocalizedName().substring(5).replace(".name", "") + ".png";
+		return IronSuits.ID + ":textures/models/armor/" + this.name + ".png";
 	}
 
-	ModelBiped armorModel = new ModelBiped();
+	public ModelArmorBase armorModel = new ModelArmorBase(1.0F);
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving,
 			ItemStack itemStack, int armorSlot) {
-		if (itemStack != null) {
-			if (itemStack.getItem() instanceof ArmorSetExo) {
-				armorModel = IronSuits.proxy.getArmorModel(armorSlot);
-			}
-		}
+		//if (itemStack != null) {
+		//	if (itemStack.getItem() instanceof ArmorSetExo) {
+		//		armorModel = IronSuits.proxy.getArmorModel(armorSlot);
+		//	}
+		//}
 
 		if (armorModel != null) {
 			armorModel.bipedHead.showModel = armorSlot == 0;
@@ -64,14 +74,14 @@ public class ArmorSetExo extends ItemArmor {
 				armorModel.aimedBow = ((EntityPlayer) entityLiving)
 						.getItemInUseDuration() > 2;
 			}
-			return armorModel;
+			return (ModelBiped)armorModel;
 		}
 
 		return null;
 	}
 
 	public void registerIcons(IIconRegister iconRegister) {
-		itemIcon = iconRegister.registerIcon(IronSuits.ID + ":" + this.getUnlocalizedName().substring(5).replace(".name", ""));
+		itemIcon = iconRegister.registerIcon(IronSuits.ID + ":" + this.name);
 	}
 
 }

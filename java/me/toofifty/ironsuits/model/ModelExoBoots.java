@@ -6,11 +6,13 @@
 
 package me.toofifty.ironsuits.model;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelExoBoots extends ModelBiped {
+public class ModelExoBoots extends ModelArmorBase {
 	// fields
 	ModelRenderer rightbottom;
 	ModelRenderer righttoe2;
@@ -28,7 +30,7 @@ public class ModelExoBoots extends ModelBiped {
 	ModelRenderer leftconnector;
 
 	public ModelExoBoots(float f) {
-		super(f, 0, 64, 32);
+		super(f);
 		
 		textureWidth = 64;
 		textureHeight = 32;
@@ -148,10 +150,56 @@ public class ModelExoBoots extends ModelBiped {
 		this.bipedRightLeg.addChild(rightconnector);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3,
 			float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+	}
+	
+	public void defaultRender(float f) {
+		
+		leftbottom.render(f);
+		lefttoe2.render(f);
+		lefttoe1.render(f);
+		leftout.render(f);
+		leftback1.render(f);
+		leftback2.render(f);
+		leftconnector.render(f);
+		
+		rightbottom.render(f);
+		righttoe2.render(f);
+		righttoe1.render(f);
+		rightout.render(f);
+		rightback1.render(f);
+		rightback2.render(f);
+		rightconnector.render(f);
+	}
+	
+	public void renderInventory(float f) {
+		GL11.glTranslatef(0.2F, -0.8F, 0F);
+		
+		leftbottom.render(f);
+		lefttoe2.render(f);
+		lefttoe1.render(f);
+		leftout.render(f);
+		leftback1.render(f);
+		leftback2.render(f);
+		leftconnector.render(f);
+
+		// Correct
+		GL11.glTranslatef(-0.2F, 0F, 0F);
+		
+		// Move
+		GL11.glTranslatef(-0.2F, 0F, 0F);
+		
+		rightbottom.render(f);
+		righttoe2.render(f);
+		righttoe1.render(f);
+		rightout.render(f);
+		rightback1.render(f);
+		rightback2.render(f);
+		rightconnector.render(f);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z) {

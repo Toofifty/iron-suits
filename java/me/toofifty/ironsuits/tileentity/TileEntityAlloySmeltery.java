@@ -1,10 +1,11 @@
 package me.toofifty.ironsuits.tileentity;
 
 import me.toofifty.ironsuits.block.BlockAlloySmeltery;
-import me.toofifty.ironsuits.crafting.AlloyRecipes;
+import me.toofifty.ironsuits.crafting.AlloyCraftingManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -22,7 +23,10 @@ public class TileEntityAlloySmeltery extends TileEntity implements ISidedInvento
 	
 	private ItemStack[] slots = new ItemStack[6];
 	
-	public int furnaceSpeed = 200;
+	private InventoryCrafting craftMatrix;
+	
+	public int furnaceSpeed = 100;
+	public int originalSpeed = 100;
 	
 	/* Time needed */
 	public int burnTime;
@@ -35,6 +39,10 @@ public class TileEntityAlloySmeltery extends TileEntity implements ISidedInvento
 	
 	public int getSizeInventory() {
 		return this.slots.length;
+	}
+	
+	public void initIC(InventoryCrafting inventoryCrafting) {
+		this.craftMatrix = inventoryCrafting;
 	}
 	
 	public String getInvName() {
@@ -138,7 +146,7 @@ public class TileEntityAlloySmeltery extends TileEntity implements ISidedInvento
 		
 	}
 	
-	public void updateEntity() {
+	public void updateEntity() {		
 		boolean flag = this.burnTime > 0;
 		boolean dirty = false;
 		
@@ -166,18 +174,21 @@ public class TileEntityAlloySmeltery extends TileEntity implements ISidedInvento
 				dirty = true;
 				BlockAlloySmeltery.updateAlloySmelteryState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 			}
-		}
 		
-		if (this.isBurning() && this.canSmelt()) {
-			this.cookTime++;
-			
-			if (this.cookTime == this.furnaceSpeed) {
+			if (this.isBurning() && this.canSmelt()) {
+				this.furnaceSpeed = this.originalSpeed * this.getNumberOfItems();
+				
+				this.cookTime++;
+
+				if (this.cookTime >= this.furnaceSpeed) {
+					this.cookTime = 0;
+					this.smeltItem();
+					dirty = true;
+				}
+			} else {
 				this.cookTime = 0;
-				this.smeltItem();
-				dirty = true;
 			}
-		} else {
-			this.cookTime = 0;
+
 		}
 		
 		if (dirty) {
@@ -187,33 +198,23 @@ public class TileEntityAlloySmeltery extends TileEntity implements ISidedInvento
 
 	private void smeltItem() {
 		if (this.canSmelt()) {
-			int n;
-			if (this.slots[0] != null && this.slots[1] == null &&
-					this.slots[2] == null && this.slots[3] == null) {
-				n = 0;
-			} else if (this.slots[0] == null && this.slots[1] != null &&
-					this.slots[2] == null && this.slots[3] == null) {
-				n = 1;
-			} else if (this.slots[0] == null && this.slots[1] == null &&
-					this.slots[2] != null && this.slots[3] == null) {
-				n = 2;
-			} else  {
-				n = 3;
-			}
-			ItemStack itemStack = FurnaceRecipes.smelting().getSmeltingResult(this.slots[n]);
+			ItemStack itemStack = AlloyCraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.worldObj);
 			
 			if (this.slots[5] == null) {
 				this.slots[5] = itemStack.copy();
 			} else if (this.slots[5].isItemEqual(itemStack)) {
 				this.slots[5].stackSize += itemStack.stackSize;
 			}
-			
+
 			for (int i = 0; i < 4; i++) {
-				if (this.slots[i] != null) {
-					this.slots[i].stackSize--;
-					
-					if (this.slots[i].stackSize <= 0) {
-						this.slots[i] = null;
+
+				ItemStack slot = this.craftMatrix.getStackInSlot(i);
+				
+				if (slot != null) {
+					slot = this.craftMatrix.decrStackSize(i, 1);
+
+					if (slot.stackSize <= 0) {
+						this.craftMatrix.setInventorySlotContents(i, null);
 					}
 				}
 			}
@@ -222,57 +223,35 @@ public class TileEntityAlloySmeltery extends TileEntity implements ISidedInvento
 	}
 	
 	private boolean canSmelt() {
-		// Easier to check with these
-		ItemStack s0 = this.slots[0];
-		ItemStack s1 = this.slots[1];
-		ItemStack s2 = this.slots[2];
-		ItemStack s3 = this.slots[3];
-
-		// Can't smelt if they're all empty
-		if (s0 != null || s1 != null || s2 != null || s3 != null) {
-			
-			if (AlloyRecipes.hasRecipe(s0, s1, s2, s3)) {
-				return true;
-			}
-			
-			// Default recipes work if there's only one slot being used
-			int n;
-			if (s0 != null && s1 == null && s2 == null && s3 == null) {
-				n = 0;
-			} else if (s0 == null && s1 != null && s2 == null && s3 == null) {
-				n = 1;
-			} else if (s0 == null && s1 == null && s2 != null && s3 == null) {
-				n = 2;
-			} else {
-				//ItemStack itemStack = AlloyRecipes.smelting().findMatchingRecipe(this.slots);
-				return false;
-			}
-			
-			ItemStack itemStack = FurnaceRecipes.smelting().getSmeltingResult(this.slots[n]);
-			
-			if (itemStack == null) return false;
+		ItemStack itemStack = AlloyCraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.worldObj);
+		
+		if (itemStack != null) {
 			if (this.slots[5] == null) return true;
 			if (!this.slots[5].isItemEqual(itemStack)) return false;
 			
 			int result = this.slots[5].stackSize + itemStack.stackSize;
 			
 			return (result <= 64 && getInventoryStackLimit() <= itemStack.getMaxStackSize());
-			
-		} else return false;
+		}
+		return false;
 	}
+	
 	
 	/**
 	 * Slow the furnace down when there's extra items
 	 * @return 0-4
 	 */
 	public int getNumberOfItems() {
-		int i = 0;
-		for (int j = 0; j < 4; j++) {
-			if (this.slots[j] != null) {
-				i++;
+		int n = 0;
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 2; j++) {
+				ItemStack itemStack = this.craftMatrix.getStackInRowAndColumn(i, j);
+				if (itemStack != null) {
+					n++;
+				}
 			}
 		}
-		return i;
+		return n;
 	}
 
 	@Override
@@ -317,14 +296,15 @@ public class TileEntityAlloySmeltery extends TileEntity implements ISidedInvento
 
 	public int getBurnTimeRemainingScaled(int i) {
 		if (this.currentItemBurnTime == 0) {
-			this.currentItemBurnTime = this.furnaceSpeed;
+			this.currentItemBurnTime = this.originalSpeed;
 		}
 		
 		return this.burnTime * i / this.currentItemBurnTime;
 	}
 
 	public int getCookProgressScaled(int i) {
-		return this.cookTime * i / this.furnaceSpeed;
+		int mult = Math.max(this.getNumberOfItems(), 1);
+		return (this.cookTime * i) / (this.furnaceSpeed * mult);
 	}
 
 }

@@ -23,7 +23,6 @@ public class ModelAssemblyTable extends ModelBase {
 		textureWidth = 64;
 		textureHeight = 64;
 
-		//0.7853982F
 		top = new ModelRenderer(this, 0, 0);
 		top.addBox(0F, 0F, 0F, 16, 1, 16);
 		top.setRotationPoint(-8F, 8F, -8F);
@@ -32,7 +31,7 @@ public class ModelAssemblyTable extends ModelBase {
 		setRotation(top, 0F, 0F, 0F);
 		base = new ModelRenderer(this, 0, 17);
 		base.addBox(-5F, 4F, -5F, 10, 9, 10);
-		base.setRotationPoint(0F, 7F, 0F);
+		base.setRotationPoint(0F, 7F, 3F);
 		base.setTextureSize(64, 64);
 		base.mirror = true;
 		setRotation(base, 0F, 0F, 0F);
@@ -49,11 +48,11 @@ public class ModelAssemblyTable extends ModelBase {
 		beam2.mirror = true;
 		setRotation(beam2, 1.308997F, 0F, 0F);
 		leg1p1 = new ModelRenderer(this, 44, 17);
-		leg1p1.addBox(0F, 0F, -0.5F, 6, 1, 1);
+		leg1p1.addBox(-2F, 0F, 3F, 6, 1, 1);
 		leg1p1.setRotationPoint(4F, 20F, 4F);
 		leg1p1.setTextureSize(64, 64);
 		leg1p1.mirror = true;
-		setRotation(leg1p1, 0F, -0.7853982F, 0F);
+		setRotation(leg1p1, 0F, 0F, 0F);
 		leg1p2 = new ModelRenderer(this, 44, 20);
 		leg1p2.addBox(0F, 0F, -0.5F, 1, 8, 1);
 		leg1p2.setRotationPoint(7F, 16F, 7F);
@@ -61,11 +60,11 @@ public class ModelAssemblyTable extends ModelBase {
 		leg1p2.mirror = true;
 		setRotation(leg1p2, 0F, -0.7853982F, 0F);
 		leg2p1 = new ModelRenderer(this, 44, 17);
-		leg2p1.addBox(0F, 0F, -0.5F, 6, 1, 1);
-		leg2p1.setRotationPoint(4F, 20F, -4F);
+		leg2p1.addBox(0F, 0F, 0F, 8, 1, 1);
+		leg2p1.setRotationPoint(4F, 20F, -1F);
 		leg2p1.setTextureSize(64, 64);
 		leg2p1.mirror = true;
-		setRotation(leg2p1, 0F, 0.7853982F, 0F);
+		setRotation(leg2p1, 0F, 1.151917F, 0F);
 		leg2p2 = new ModelRenderer(this, 44, 20);
 		leg2p2.addBox(0F, 0F, -0.5F, 1, 8, 1);
 		leg2p2.setRotationPoint(7F, 16F, -7F);
@@ -73,11 +72,11 @@ public class ModelAssemblyTable extends ModelBase {
 		leg2p2.mirror = true;
 		setRotation(leg2p2, 0F, 0.7853982F, 0F);
 		leg3p1 = new ModelRenderer(this, 44, 17);
-		leg3p1.addBox(0F, 0F, -0.5F, 6, 1, 1);
-		leg3p1.setRotationPoint(-4F, 20F, -4F);
+		leg3p1.addBox(0F, 0F, -1F, 8, 1, 1);
+		leg3p1.setRotationPoint(-4F, 20F, -1F);
 		leg3p1.setTextureSize(64, 64);
 		leg3p1.mirror = true;
-		setRotation(leg3p1, 0F, 2.356194F, 0F);
+		setRotation(leg3p1, 0F, 1.989675F, 0F);
 		leg3p2 = new ModelRenderer(this, 44, 20);
 		leg3p2.addBox(0F, 0F, -0.5F, 1, 8, 1);
 		leg3p2.setRotationPoint(-7F, 16F, -7F);
@@ -85,11 +84,11 @@ public class ModelAssemblyTable extends ModelBase {
 		leg3p2.mirror = true;
 		setRotation(leg3p2, 0F, 2.356194F, 0F);
 		leg4p1 = new ModelRenderer(this, 44, 17);
-		leg4p1.addBox(0F, 0F, -0.5F, 6, 1, 1);
+		leg4p1.addBox(-4F, 0F, 3F, 6, 1, 1);
 		leg4p1.setRotationPoint(-4F, 20F, 4F);
 		leg4p1.setTextureSize(64, 64);
 		leg4p1.mirror = true;
-		setRotation(leg4p1, 0F, -2.356194F, 0F);
+		setRotation(leg4p1, 0F, 0F, 0F);
 		leg4p2 = new ModelRenderer(this, 44, 20);
 		leg4p2.addBox(0F, 0F, -0.5F, 1, 8, 1);
 		leg4p2.setRotationPoint(-7F, 16F, 7F);
@@ -116,19 +115,19 @@ public class ModelAssemblyTable extends ModelBase {
 		leg4p2.render(f5);
 	}
 	
-	public void renderModel(float f) {
-		top.render(f);
-		base.render(f);
-		beam1.render(f);
-		beam2.render(f);
-		leg1p1.render(f);
-		leg1p2.render(f);
-		leg2p1.render(f);
-		leg2p2.render(f);
-		leg3p1.render(f);
-		leg3p2.render(f);
-		leg4p1.render(f);
-		leg4p2.render(f);
+	public void renderModel(float f5) {
+		top.render(f5);
+		base.render(f5);
+		beam1.render(f5);
+		beam2.render(f5);
+		leg1p1.render(f5);
+		leg1p2.render(f5);
+		leg2p1.render(f5);
+		leg2p2.render(f5);
+		leg3p1.render(f5);
+		leg3p2.render(f5);
+		leg4p1.render(f5);
+		leg4p2.render(f5);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z) {

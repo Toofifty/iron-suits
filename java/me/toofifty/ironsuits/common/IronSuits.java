@@ -2,16 +2,18 @@ package me.toofifty.ironsuits.common;
 
 import me.toofifty.ironsuits.armor.ArmorSetExo;
 import me.toofifty.ironsuits.block.BlockAlloySmeltery;
+import me.toofifty.ironsuits.block.BlockAssemblyDesk;
 import me.toofifty.ironsuits.block.BlockAssemblyTable;
+import me.toofifty.ironsuits.block.BlockBase;
 import me.toofifty.ironsuits.block.BlockGrinder;
 import me.toofifty.ironsuits.block.BlockIronCraftingTable;
-import me.toofifty.ironsuits.block.BlockOreOsmium;
-import me.toofifty.ironsuits.block.BlockOsmiumBlock;
 import me.toofifty.ironsuits.creativetab.CreativeTabIronSuits;
 import me.toofifty.ironsuits.gui.GuiHandler;
 import me.toofifty.ironsuits.item.ItemBase;
+import me.toofifty.ironsuits.render.RenderAssemblyDesk;
 import me.toofifty.ironsuits.render.RenderAssemblyTable;
 import me.toofifty.ironsuits.tileentity.TileEntityAlloySmeltery;
+import me.toofifty.ironsuits.tileentity.TileEntityAssemblyDesk;
 import me.toofifty.ironsuits.tileentity.TileEntityAssemblyTable;
 import me.toofifty.ironsuits.worldgen.OreOsmiumWorldgen;
 import net.minecraft.block.Block;
@@ -25,6 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -47,6 +50,8 @@ public class IronSuits {
 	public static final String ID = "ironsuits";
 	public static final String VERSION = "1.7.2-0.1.0a";
 	public static final String NAME = "Toofifty's Iron Suits";
+	
+	public static float rotator = 0F;
 
 	/**
 	 * ===== Armour Materials =====
@@ -282,6 +287,7 @@ public class IronSuits {
 	@EventHandler
 	public void initialize(FMLInitializationEvent event) {
 
+		proxy.init();
 		proxy.registerRenderInformation();
 		addRecipes();
 		addSmelting();
@@ -352,12 +358,15 @@ public class IronSuits {
 		 * Blocks
 		 */
 		assemblyTable = new BlockAssemblyTable(Material.iron, "assembly_table");
+		assemblyDesk = new BlockAssemblyDesk(Material.iron, "assembly_desk");
 		alloySmelteryIdle = new BlockAlloySmeltery(Material.iron, "alloy_smeltery_idle", false);
 		alloySmelteryActive = new BlockAlloySmeltery(Material.iron, "alloy_smeltery_active", true);
 		grinder = new BlockGrinder(Material.iron, "grinder");
 		ironCraftingTable = new BlockIronCraftingTable(Material.iron).setBlockName("iron_workbench");
-		oreOsmium = new BlockOreOsmium(Material.rock).setBlockName("osmium_ore");
-		blockOsmium = new BlockOsmiumBlock(Material.iron).setBlockName("osmium_block");
+		oreOsmium = new BlockBase(Material.rock, "osmium_ore").setHardness(30F);
+		oreCopper = new BlockBase(Material.rock, "copper_ore").setHardness(10F);
+		oreTin = new BlockBase(Material.rock, "tin_ore").setHardness(10F);
+		blockOsmium = new BlockBase(Material.rock, "osmium_block").setHardness(15F);
 
 		/**
 		 * Items
@@ -372,7 +381,7 @@ public class IronSuits {
 		ingotBronze = new ItemBase("bronze_ingot");
 
 	}
-
+	
 	public void addRecipes() {
 
 		/**
@@ -465,8 +474,11 @@ public class IronSuits {
 		 * Register Blocks
 		 */
 		registerBlock(assemblyTable);
+		registerBlock(assemblyDesk);
 		registerBlock(ironCraftingTable);
 		registerBlock(oreOsmium);
+		registerBlock(oreCopper);
+		registerBlock(oreTin);
 		registerBlock(blockOsmium);
 		registerBlock(alloySmelteryIdle);
 		registerBlock(alloySmelteryActive);
@@ -481,6 +493,7 @@ public class IronSuits {
 		registerItem(ingotCopper);
 		registerItem(ingotTin);
 		registerItem(ingotSteel);
+		registerItem(ingotBronze);
 
 		/**
 		 * Register Armour Pieces
@@ -515,6 +528,7 @@ public class IronSuits {
 		 */
 		GameRegistry.registerTileEntity(TileEntityAlloySmeltery.class, "tile_entity_alloy_smeltery");
 		GameRegistry.registerTileEntity(TileEntityAssemblyTable.class, "tile_entity_assembly_table");
+		GameRegistry.registerTileEntity(TileEntityAssemblyDesk.class, "tile_entity_assembly_desk");
 		
 		/**
 		 * GUI
@@ -526,6 +540,8 @@ public class IronSuits {
 		 * Renderers
 		 */
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAssemblyTable.class, new RenderAssemblyTable());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAssemblyDesk.class, new RenderAssemblyDesk());
+		//RenderingRegistry.registerBlockHandler(handler);
 
 	}
 	
@@ -543,9 +559,9 @@ public class IronSuits {
 		// OreDictionary.registerOre("oreTin", new ItemStack(oreTin));
 		// OreDictionary.registerOre("dustCopper", new ItemStack(dustCopper));
 		// OreDictionary.registerOre("dustTin", new ItemStack(dustTin));
-		// OreDictionary.registerOre("dustSteel", new ItemStack(dustSteel));
+		OreDictionary.registerOre("dustSteel", new ItemStack(dustSteel));
 		OreDictionary.registerOre("ingotCopper", new ItemStack(ingotCopper));
-		// OreDictionary.registerOre("ingotTin", new ItemStack(ingotTin));
+		OreDictionary.registerOre("ingotTin", new ItemStack(ingotTin));
 		OreDictionary.registerOre("ingotSteel", new ItemStack(ingotSteel));
 
 	}

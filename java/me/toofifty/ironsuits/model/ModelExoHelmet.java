@@ -9,7 +9,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelExoHelmet extends ModelBiped {
+public class ModelExoHelmet extends ModelArmorBase {
 	// fields
 	ModelRenderer hrightside;
 	ModelRenderer hfrontforehead;
@@ -24,7 +24,7 @@ public class ModelExoHelmet extends ModelBiped {
 	ModelRenderer htop3;
 
 	public ModelExoHelmet(float f) {
-		super(f, 0, 64, 32);
+		super(f);
 
 		textureWidth = 64;
 		textureHeight = 32;
@@ -109,10 +109,39 @@ public class ModelExoHelmet extends ModelBiped {
 		this.bipedHead.addChild(htop3);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3,
 			float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+	}
+
+	public void defaultRender(float f) {
+		this.hrightside.render(f);
+		this.hfrontforehead.render(f);
+		this.hfrontbottom.render(f);
+		this.hfrontmiddle.render(f);
+		this.htop.render(f);
+		this.hleftside.render(f);
+		this.hback.render(f);
+		this.hbackbottom.render(f);
+		this.htop1.render(f);
+		this.htop2.render(f);
+		this.htop3.render(f);
+	}
+
+	public void renderInventory(float f) {
+		this.hrightside.render(f);
+		this.hfrontforehead.render(f);
+		this.hfrontbottom.render(f);
+		this.hfrontmiddle.render(f);
+		this.htop.render(f);
+		this.hleftside.render(f);
+		this.hback.render(f);
+		this.hbackbottom.render(f);
+		this.htop1.render(f);
+		this.htop2.render(f);
+		this.htop3.render(f);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z) {
