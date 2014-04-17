@@ -69,6 +69,9 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public ModelArmorBase getArmorModel(int id) {
 		switch (id) {
+		/**
+		 * Exoskeleton suit
+		 */
 		case 0:
 			return exoHelmet;
 		case 1:
@@ -77,6 +80,9 @@ public class ClientProxy extends CommonProxy {
 			return exoLegs;
 		case 3:
 			return exoBoots;
+		/**
+		 * Light weight suit
+		 */
 		case 4:
 			return lightHelmet;
 		}

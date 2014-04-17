@@ -33,7 +33,6 @@ public class RenderArmorItem implements IItemRenderer {
 		case EQUIPPED: return true;
 		//case ENTITY: return true;
 		default: 
-			System.out.println("type " + type);
 			return false;
 		}
 	}
@@ -58,15 +57,14 @@ public class RenderArmorItem implements IItemRenderer {
 			
 			GL11.glRotatef(180, 0F, 1F, 0F); // Flip right side up
 			GL11.glScalef(16F, 16F, 16F); // Fix inventory down-sizing
-			GL11.glRotatef(5, 1F, 0F, 0F); // Tilt forward
+			GL11.glRotatef(30, 1F, 0F, 0F); // Tilt forward
 			GL11.glTranslatef(-0.5F, 0.8F, 0F); // Align with slots
 			
 			
 			GL11.glFrontFace(GL11.GL_CW);
 			
-			if (this.armorItem.resourceLocation != null) {
-				Minecraft.getMinecraft().renderEngine.bindTexture(this.armorItem.resourceLocation);
-			}
+			// If the item actually exists, it will DEFINITELY have a resourceLocation
+			Minecraft.getMinecraft().renderEngine.bindTexture(this.armorItem.resourceLocation);
 			GL11.glRotatef(IronSuits.rotator, 0F, 1F, 0F); // Apply subtle rotation
 			
 			// Any additional translations need to be made in renderInventory!

@@ -36,5 +36,7 @@ item.exo_steel_chest.name=Steel Exo Body
 item.exo_steel_legs.name=Steel Exo Legs
 item.exo_steel_boots.name=Steel Exo Boots
 
+item.light_gold_helmet.name=Light Gold Helmet
+
 itemGroup.IronSuits.name=Iron Suits
 container.alloy_smeltery=Alloy Smeltery

@@ -23,15 +23,16 @@ public class ArmorBase extends ItemArmor {
 	private String name;
 
 	public ArmorBase(ArmorMaterial par1ArmorMaterial,
-			int par2, int par3, String par4Str) {
+			int par2, int par3, String par4Str, int par5) {
 		super(par1ArmorMaterial, par2, par3);
+		armorModel = IronSuits.proxy.getArmorModel(par5);
 		this.setCreativeTab(IronSuits.tabIronSuits);
 		this.setMaxStackSize(1);
-		this.material = par1ArmorMaterial;
+		material = par1ArmorMaterial;
 		this.setUnlocalizedName(par4Str);
 		this.setMaxDamage(par1ArmorMaterial.getDurability(par3));
 		this.setFull3D();
-		this.name = par4Str;
+		name = par4Str;
 		par1ArmorMaterial.getDamageReductionAmount(par3);
 		resourceLocation = new ResourceLocation(IronSuits.ID, "textures/models/armor/" + par4Str + ".png");
 
@@ -46,7 +47,7 @@ public class ArmorBase extends ItemArmor {
 		return IronSuits.ID + ":textures/models/armor/" + this.name + ".png";
 	}
 
-	public static ModelArmorBase armorModel;
+	public ModelArmorBase armorModel;
 
 	@Override
 	@SideOnly(Side.CLIENT)
