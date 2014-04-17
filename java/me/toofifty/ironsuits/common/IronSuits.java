@@ -1,6 +1,7 @@
 package me.toofifty.ironsuits.common;
 
 import me.toofifty.ironsuits.armor.ArmorSetExo;
+import me.toofifty.ironsuits.armor.ArmorSetLight;
 import me.toofifty.ironsuits.block.BlockAlloySmeltery;
 import me.toofifty.ironsuits.block.BlockAssemblyDesk;
 import me.toofifty.ironsuits.block.BlockAssemblyTable;
@@ -181,7 +182,11 @@ public class IronSuits {
 	public static Item chestExoSteel;
 	public static Item legsExoSteel;
 	public static Item bootsExoSteel;
-	
+
+	public static Item helmetLightGold;
+	public static Item chestLightGold;
+	public static Item legsLightGold;
+	public static Item bootsLightGold;
 	/*
 	 * Light weight - Bronze, Iron, Gold, Steel
 	 */
@@ -343,6 +348,8 @@ public class IronSuits {
 		chestExoSteel = new ArmorSetExo(armorSetISSteel, 0, 1, "exo_steel_chest");
 		legsExoSteel = new ArmorSetExo(armorSetISSteel, 0, 2, "exo_steel_legs");
 		bootsExoSteel = new ArmorSetExo(armorSetISSteel, 0, 3, "exo_steel_boots");
+		
+		helmetLightGold = new ArmorSetLight(armorSetISGold, 0, 0, "light_gold_helmet");
 
 		/**
 		 * World Generation
@@ -524,6 +531,9 @@ public class IronSuits {
 		registerItem(chestExoSteel);
 		registerItem(legsExoSteel);
 		registerItem(bootsExoSteel);
+		
+		registerItem(helmetLightGold);
+		
 
 		/**
 		 * World Generation

@@ -1,6 +1,7 @@
 package me.toofifty.ironsuits.render;
 
 import me.toofifty.ironsuits.common.IronSuits;
+import me.toofifty.ironsuits.armor.ArmorBase;
 import me.toofifty.ironsuits.armor.ArmorSetExo;
 import me.toofifty.ironsuits.model.ModelArmorBase;
 import net.minecraft.client.Minecraft;
@@ -20,7 +21,7 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderArmorItem implements IItemRenderer {
 
-	protected ArmorSetExo armorItem;
+	protected ArmorBase armorItem;
 	
 	private double count;
 
@@ -47,7 +48,7 @@ public class RenderArmorItem implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		// Don't want to load an entire model every tick, do we...			
 		if (this.armorItem == null) {
-			this.armorItem = (ArmorSetExo)item.getItem();
+			this.armorItem = (ArmorBase)item.getItem();
 		}
 		
 		switch (type) {
@@ -63,7 +64,9 @@ public class RenderArmorItem implements IItemRenderer {
 			
 			GL11.glFrontFace(GL11.GL_CW);
 			
-			Minecraft.getMinecraft().renderEngine.bindTexture(this.armorItem.resourceLocation);
+			if (this.armorItem.resourceLocation != null) {
+				Minecraft.getMinecraft().renderEngine.bindTexture(this.armorItem.resourceLocation);
+			}
 			GL11.glRotatef(IronSuits.rotator, 0F, 1F, 0F); // Apply subtle rotation
 			
 			// Any additional translations need to be made in renderInventory!

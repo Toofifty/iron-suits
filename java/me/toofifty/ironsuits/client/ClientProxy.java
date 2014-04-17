@@ -8,6 +8,7 @@ import me.toofifty.ironsuits.model.ModelExoBoots;
 import me.toofifty.ironsuits.model.ModelExoChest;
 import me.toofifty.ironsuits.model.ModelExoHelmet;
 import me.toofifty.ironsuits.model.ModelExoLegs;
+import me.toofifty.ironsuits.model.ModelLightHelmet;
 import me.toofifty.ironsuits.render.RenderArmorItem;
 import me.toofifty.ironsuits.render.RenderAssemblyDesk;
 import me.toofifty.ironsuits.render.RenderAssemblyTable;
@@ -49,6 +50,8 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(IronSuits.legsExoSteel, new RenderArmorItem());
 		MinecraftForgeClient.registerItemRenderer(IronSuits.bootsExoSteel, new RenderArmorItem());
 		
+		MinecraftForgeClient.registerItemRenderer(IronSuits.helmetLightGold, new RenderArmorItem());
+		
 	}
 	
 	public void init() {
@@ -61,6 +64,8 @@ public class ClientProxy extends CommonProxy {
 	private static final ModelExoLegs exoLegs = new ModelExoLegs(1.0F);
 	private static final ModelExoBoots exoBoots = new ModelExoBoots(1.0F);
 	
+	private static final ModelLightHelmet lightHelmet = new ModelLightHelmet(1.0F);
+	
 	@Override
 	public ModelArmorBase getArmorModel(int id) {
 		switch (id) {
@@ -72,6 +77,8 @@ public class ClientProxy extends CommonProxy {
 			return exoLegs;
 		case 3:
 			return exoBoots;
+		case 4:
+			return lightHelmet;
 		}
 		return exoHelmet;
 	}
