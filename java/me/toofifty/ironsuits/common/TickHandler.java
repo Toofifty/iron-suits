@@ -12,8 +12,7 @@ public class TickHandler {
 	@SubscribeEvent
 	public void onTick(TickEvent event) {
 		//IronSuits.rotator += 0.01F;
-		IronSuits.rotator += 0.02F;
+		IronSuits.rotator += 0.5F;
 		if (IronSuits.rotator > 360) IronSuits.rotator -= 360;
 	}
-
 }

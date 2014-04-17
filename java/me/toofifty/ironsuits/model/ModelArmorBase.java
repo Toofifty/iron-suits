@@ -16,20 +16,12 @@ public class ModelArmorBase extends ModelBiped {
 	
 	public void defaultRender(float f) {}
 	
-	public void renderEntity(float f) {
-		this.defaultRender(f);
-	}
+	public void renderEntity(float f) {}
 	
-	public void renderFirstPerson(float f) {
-		this.defaultRender(f);
-	}
+	public void renderFirstPerson(float f) {}
 	
-	public void renderEquipped(float f) {
-		this.defaultRender(f);
-	}
+	public void renderEquipped(float f) {}
 	
-	public void renderInventory(float f) {
-		this.defaultRender(f);
-	}
+	public void renderInventory(float f) {}
 
 }

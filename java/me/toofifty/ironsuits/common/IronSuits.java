@@ -426,6 +426,13 @@ public class IronSuits {
 				'C', circuit
 		});
 		
+		GameRegistry.addRecipe(new ItemStack(chestExoGold, 1),
+				new Object[] {
+				"S",
+				"C",
+				'S', chestExoGold,
+				'C', circuit
+		});
 		
 		
 		/**

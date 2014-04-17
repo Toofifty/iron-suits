@@ -1,21 +1,28 @@
 package me.toofifty.ironsuits.armor;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import me.toofifty.ironsuits.common.IronSuits;
 import me.toofifty.ironsuits.model.ModelArmorBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ArmorSetExo extends ItemArmor {
 
 	private String name;
+	
+	private static Map installedModuleList = new HashMap();
 
 	public ArmorSetExo(ArmorMaterial par1ArmorMaterial,
 			int par2, int par3, String par4Str) {
@@ -33,6 +40,31 @@ public class ArmorSetExo extends ItemArmor {
 
 	}
 	
+	public static void addModule(String module, int function) {
+		if (!installedModuleList.containsKey(module)) {
+			System.out.println("Module added!");
+			installedModuleList.put(module, function);
+		}
+	}
+	
+	@Override
+	public void onUpdate(ItemStack itemStack, World world, Entity entity, int par4, boolean par5) {
+		super.onUpdate(itemStack, world, entity, par4, par5);
+		
+		if (installedModuleList.containsKey("lowProtect")) {
+			int i = (Integer) installedModuleList.get("lowProtect");
+			this.moduleFunction(itemStack, entity, i);
+		}
+		
+	}
+	
+	public void moduleFunction(ItemStack itemStack, Entity entity, int i) {
+		switch(i) {
+		case 0:
+			itemStack.addEnchantment(Enchantment.protection, 1);
+		}
+	}
+	
 	public ResourceLocation resourceLocation;
 
 	public ArmorMaterial material;
@@ -48,11 +80,6 @@ public class ArmorSetExo extends ItemArmor {
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving,
 			ItemStack itemStack, int armorSlot) {
-		//if (itemStack != null) {
-		//	if (itemStack.getItem() instanceof ArmorSetExo) {
-		//		armorModel = IronSuits.proxy.getArmorModel(armorSlot);
-		//	}
-		//}
 
 		if (armorModel != null) {
 			armorModel.bipedHead.showModel = armorSlot == 0;

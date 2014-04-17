@@ -1,7 +1,5 @@
 package me.toofifty.ironsuits.client;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
 import me.toofifty.ironsuits.common.CommonProxy;
 import me.toofifty.ironsuits.common.IronSuits;
 import me.toofifty.ironsuits.common.TickHandler;
@@ -13,10 +11,10 @@ import me.toofifty.ironsuits.model.ModelExoLegs;
 import me.toofifty.ironsuits.render.RenderArmorItem;
 import me.toofifty.ironsuits.render.RenderAssemblyDesk;
 import me.toofifty.ironsuits.render.RenderAssemblyTable;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ClientProxy extends CommonProxy {
 	
