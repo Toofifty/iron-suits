@@ -3,12 +3,7 @@ package me.toofifty.ironsuits.client;
 import me.toofifty.ironsuits.common.CommonProxy;
 import me.toofifty.ironsuits.common.IronSuits;
 import me.toofifty.ironsuits.common.TickHandler;
-import me.toofifty.ironsuits.model.ModelArmorBase;
-import me.toofifty.ironsuits.model.ModelExoBoots;
-import me.toofifty.ironsuits.model.ModelExoChest;
-import me.toofifty.ironsuits.model.ModelExoHelmet;
-import me.toofifty.ironsuits.model.ModelExoLegs;
-import me.toofifty.ironsuits.model.ModelLightHelmet;
+import me.toofifty.ironsuits.model.ModelArmor;
 import me.toofifty.ironsuits.render.RenderArmorItem;
 import me.toofifty.ironsuits.render.RenderAssemblyDesk;
 import me.toofifty.ironsuits.render.RenderAssemblyTable;
@@ -19,13 +14,17 @@ import cpw.mods.fml.common.FMLCommonHandler;
 
 public class ClientProxy extends CommonProxy {
 	
-	public static int assemblyDeskRenderID;
 	public static int assemblyTableRenderID;
+	public static int assemblyDeskActiveRenderID;
+	public static int assemblyDeskIdleRenderID;
 	
 	public void registerRenderInformation() {
 		
-		assemblyDeskRenderID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(assemblyDeskRenderID, new RenderAssemblyDesk());
+		assemblyDeskActiveRenderID = RenderingRegistry.getNextAvailableRenderId();
+		RenderingRegistry.registerBlockHandler(assemblyDeskActiveRenderID, new RenderAssemblyDesk());
+		
+		assemblyDeskIdleRenderID = RenderingRegistry.getNextAvailableRenderId();
+		RenderingRegistry.registerBlockHandler(assemblyDeskIdleRenderID, new RenderAssemblyDesk());
 		
 		assemblyTableRenderID = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(assemblyTableRenderID, new RenderAssemblyTable());
@@ -49,8 +48,10 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(IronSuits.helmetExoSteel, new RenderArmorItem());
 		MinecraftForgeClient.registerItemRenderer(IronSuits.legsExoSteel, new RenderArmorItem());
 		MinecraftForgeClient.registerItemRenderer(IronSuits.bootsExoSteel, new RenderArmorItem());
-		
-		MinecraftForgeClient.registerItemRenderer(IronSuits.helmetLightGold, new RenderArmorItem());
+
+		MinecraftForgeClient.registerItemRenderer(IronSuits.helmetReinforcedBronze, new RenderArmorItem());
+		MinecraftForgeClient.registerItemRenderer(IronSuits.chestReinforcedBronze, new RenderArmorItem());
+		MinecraftForgeClient.registerItemRenderer(IronSuits.legsReinforcedBronze, new RenderArmorItem());
 		
 	}
 	
@@ -58,19 +59,21 @@ public class ClientProxy extends CommonProxy {
 		FMLCommonHandler.instance().bus().register(new TickHandler());
 		MinecraftForge.EVENT_BUS.register(new TickHandler());
 	}
+
+	ModelArmor exoHelmet = new ModelArmor("exo_helmet", 64, 32);
+	ModelArmor exoChest = new ModelArmor("exo_chest", 64, 32);
+	ModelArmor exoLegs = new ModelArmor("exo_legs", 64, 32);
+	ModelArmor exoBoots = new ModelArmor("exo_boots", 64, 32);
 	
-	private static final ModelExoHelmet exoHelmet = new ModelExoHelmet(1.0F);
-	private static final ModelExoChest exoChest = new ModelExoChest(1.0F);
-	private static final ModelExoLegs exoLegs = new ModelExoLegs(1.0F);
-	private static final ModelExoBoots exoBoots = new ModelExoBoots(1.0F);
-	
-	private static final ModelLightHelmet lightHelmet = new ModelLightHelmet(1.0F);
+	ModelArmor reinforcedHelmet = new ModelArmor("reinforced_helmet", 64, 64);
+	ModelArmor reinforcedChest = new ModelArmor("reinforced_chest", 64, 64);
+	ModelArmor reinforcedLegs = new ModelArmor("reinforced_legs", 64, 32);
 	
 	@Override
-	public ModelArmorBase getArmorModel(int id) {
+	public ModelArmor getArmorModel(int id) {
 		switch (id) {
 		/**
-		 * Exoskeleton suit
+		 * Exoskeleton suits
 		 */
 		case 0:
 			return exoHelmet;
@@ -81,12 +84,28 @@ public class ClientProxy extends CommonProxy {
 		case 3:
 			return exoBoots;
 		/**
-		 * Light weight suit
+		 * Light weight suits
 		 */
-		case 4:
-			return lightHelmet;
+			
+		/**
+		 * Heavy weight suits
+		 */
+			
+		/**
+		 * Reinforced suits
+		 */
+		case 12:
+			return reinforcedHelmet;
+		case 13:
+			return reinforcedChest;
+		case 14:
+			return reinforcedLegs;
+			
+		/**
+		 * Steel Alloy suits
+		 */
 		}
-		return exoHelmet;
+		return null;
 	}
 
 }

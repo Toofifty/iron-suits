@@ -1,20 +1,9 @@
 package me.toofifty.ironsuits.render;
 
-import me.toofifty.ironsuits.common.IronSuits;
 import me.toofifty.ironsuits.armor.ArmorBase;
-import me.toofifty.ironsuits.armor.ArmorSetExo;
-import me.toofifty.ironsuits.model.ModelArmorBase;
+import me.toofifty.ironsuits.common.IronSuits;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainerCreative;
-import net.minecraft.client.gui.inventory.GuiInventory;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
@@ -31,7 +20,7 @@ public class RenderArmorItem implements IItemRenderer {
 		case EQUIPPED_FIRST_PERSON: return true;
 		case INVENTORY: return true;
 		case EQUIPPED: return true;
-		//case ENTITY: return true;
+		case ENTITY: return true;
 		default: 
 			return false;
 		}
@@ -49,57 +38,59 @@ public class RenderArmorItem implements IItemRenderer {
 		if (this.armorItem == null) {
 			this.armorItem = (ArmorBase)item.getItem();
 		}
-		
-		switch (type) {
-		case INVENTORY:
-			
+				
+		if (type == ItemRenderType.INVENTORY) {
 			GL11.glPushMatrix();
-			
+
 			GL11.glRotatef(180, 0F, 1F, 0F); // Flip right side up
-			GL11.glScalef(16F, 16F, 16F); // Fix inventory down-sizing
-			GL11.glRotatef(30, 1F, 0F, 0F); // Tilt forward
-			GL11.glTranslatef(-0.5F, 0.8F, 0F); // Align with slots
-			
-			
+			GL11.glScalef(12F, 12F, 12F); // Fix inventory down-sizing
+			GL11.glRotatef(10, 1F, 0F, 0F); // Tilt forward
+			GL11.glTranslatef(-0.65F, 1F, 0F); // Align with slots
+
 			GL11.glFrontFace(GL11.GL_CW);
-			
-			// If the item actually exists, it will DEFINITELY have a resourceLocation
-			Minecraft.getMinecraft().renderEngine.bindTexture(this.armorItem.resourceLocation);
-			GL11.glRotatef(IronSuits.rotator, 0F, 1F, 0F); // Apply subtle rotation
-			
+
+			Minecraft.getMinecraft().renderEngine
+					.bindTexture(this.armorItem.resourceLocation);
+			GL11.glRotatef(IronSuits.rotator, 0F, 1F, 0F); // Apply subtle
+															// rotation
+
 			// Any additional translations need to be made in renderInventory!
-			this.armorItem.armorModel.renderInventory(0.0625F);
+			this.armorItem.armorModel.renderI(0.0625F);
 
 			GL11.glFrontFace(GL11.GL_CCW);
-			
+
 			GL11.glPopMatrix();
-			
-		case EQUIPPED_FIRST_PERSON:
+
+		} else if (type == ItemRenderType.EQUIPPED) {
 			GL11.glPushMatrix();
-			GL11.glRotatef(180, 0F, 1F, 0F); // Flip right side up
-			Minecraft.getMinecraft().renderEngine.bindTexture(this.armorItem.resourceLocation);
-			this.armorItem.armorModel.renderFirstPerson(0.0625F);
+			// GL11.glRotatef(180, 0F, 1F, 0F); // Flip right side up
+			GL11.glRotatef(-70, 0F, 0F, 1F);
+			GL11.glScalef(0.8F, 0.8F, 0.8F);
+			GL11.glTranslatef(-0.2F, 1.5F, 0F);
+			Minecraft.getMinecraft().renderEngine
+					.bindTexture(this.armorItem.resourceLocation);
+			this.armorItem.armorModel.renderI(0.0625F);
 			GL11.glPopMatrix();
 			
-		case EQUIPPED:
+		} else if (type == ItemRenderType.EQUIPPED_FIRST_PERSON) {
 			GL11.glPushMatrix();
-			GL11.glRotatef(180, 0F, 1F, 0F); // Flip right side up
+			GL11.glRotatef(180, 0F, 0F, 1F);
+			GL11.glTranslatef(-0.9F, 0F, 0F);
 			Minecraft.getMinecraft().renderEngine.bindTexture(this.armorItem.resourceLocation);
-			this.armorItem.armorModel.renderEquipped(0.0625F);
+			this.armorItem.armorModel.renderI(0.0625F);
 			GL11.glPopMatrix();
 			
-		case ENTITY:
-			
+		} else if (type == ItemRenderType.ENTITY) {
 			GL11.glPushMatrix();
 			GL11.glRotatef(180, 1F, 0F, 0F); // Flip right side up
-			this.count += 0.02D;
+			GL11.glScalef(2F, 2F, 2F);
 			
-			GL11.glTranslatef(0F, -0.8F + (float) (-0.2 * Math.sin(this.count)), 0F);
+			GL11.glTranslatef(0F, -0.0F, 0F);
+			//GL11.glRotatef(IronSuits.rotator, 0F, 1F, 0F);
+			
 			Minecraft.getMinecraft().renderEngine.bindTexture(this.armorItem.resourceLocation);
-			this.armorItem.armorModel.renderEntity(0.0625F);
+			this.armorItem.armorModel.renderI(0.0625F);
 			GL11.glPopMatrix();
-			
-		default: break;
 		}
 
 	}

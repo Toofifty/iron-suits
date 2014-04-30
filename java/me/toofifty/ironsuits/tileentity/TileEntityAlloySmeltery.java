@@ -64,24 +64,24 @@ public class TileEntityAlloySmeltery extends TileEntity implements ISidedInvento
 
 	@Override
 	public ItemStack decrStackSize(int var1, int var2) {
-		if(this.slots[var1] != null) {
+		if (this.slots[var1] != null) {
 			ItemStack itemStack;
-			
+
 			if (this.slots[var1].stackSize <= var2) {
 				itemStack = this.slots[var1];
 				this.slots[var1] = null;
 				return itemStack;
 			} else {
 				itemStack = this.slots[var1].splitStack(var2);
-				
+
 				if (this.slots[var1].stackSize == 0) {
 					this.slots[var1] = null;
 				}
-				
+
 				return itemStack;
 			}
-		} else { 
-		return null;
+		} else {
+			return null;
 		}
 	}
 
@@ -256,7 +256,7 @@ public class TileEntityAlloySmeltery extends TileEntity implements ISidedInvento
 
 	@Override
 	public boolean isItemValidForSlot(int var1, ItemStack var2) {
-		return var1 == 4 ? false : var1 == 3 ? isItemFuel(var2) : true;
+		return var1 == 5 ? false : var1 == 4 ? isItemFuel(var2) : true;
 	}
 
 	private static boolean isItemFuel(ItemStack itemStack) {

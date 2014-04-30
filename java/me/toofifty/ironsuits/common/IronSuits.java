@@ -1,7 +1,7 @@
 package me.toofifty.ironsuits.common;
 
 import me.toofifty.ironsuits.armor.ArmorSetExo;
-import me.toofifty.ironsuits.armor.ArmorSetLight;
+import me.toofifty.ironsuits.armor.ArmorSetReinforced;
 import me.toofifty.ironsuits.block.BlockAlloySmeltery;
 import me.toofifty.ironsuits.block.BlockAssemblyDesk;
 import me.toofifty.ironsuits.block.BlockAssemblyTable;
@@ -62,7 +62,7 @@ public class IronSuits {
 	public static ArmorMaterial armorSetISGold;
 	public static ArmorMaterial armorSetISSteel;
 	public static ArmorMaterial armorSetISReinforcedBronze;
-	public static ArmorMaterial armorSetISInvar;
+	public static ArmorMaterial armorSetISCastIron;
 	public static ArmorMaterial armorSetISHardenedSteel;
 	public static ArmorMaterial armorSetISOsmium;
 	public static ArmorMaterial armorSetISUnstableSteel;
@@ -78,6 +78,7 @@ public class IronSuits {
 	 */
 	
 	public static final int guiAlloySmeltery = 0;
+	public static int guiAssemblyDesk = 1;
 
 	/**
 	 * ===== Creative Tabs =====
@@ -99,7 +100,8 @@ public class IronSuits {
 	
 	// Machines
 	public static Block assemblyTable;
-	public static Block assemblyDesk;
+	public static Block assemblyDeskIdle;
+	public static Block assemblyDeskActive;
 	
 	public static Block ironCraftingTable;
 	public static Block equipStationFrame;
@@ -182,11 +184,6 @@ public class IronSuits {
 	public static Item chestExoSteel;
 	public static Item legsExoSteel;
 	public static Item bootsExoSteel;
-
-	public static Item helmetLightGold;
-	public static Item chestLightGold;
-	public static Item legsLightGold;
-	public static Item bootsLightGold;
 	/*
 	 * Light weight - Bronze, Iron, Gold, Steel
 	 */
@@ -198,6 +195,11 @@ public class IronSuits {
 	/*
 	 * High-tier - Reinforced Bronze, Cast Iron, Hardened Steel
 	 */
+
+	public static Item helmetReinforcedBronze;
+	public static Item chestReinforcedBronze;
+	public static Item legsReinforcedBronze;
+	public static Item bootsReinforcedBronze;
 	
 	/*
 	 * End-tier - Osmium Infused Steel, Unstable Steel, Ultra Steel
@@ -316,7 +318,7 @@ public class IronSuits {
 		armorSetISGold = EnumHelper.addArmorMaterial("IS_GOLD", 7, new int[] {2, 5, 3, 1 }, 25);
 		armorSetISSteel = EnumHelper.addArmorMaterial("IS_STEEL", 20, new int[] { 2, 7, 5, 2 }, 12);
 		armorSetISReinforcedBronze = EnumHelper.addArmorMaterial("IS_RE_BRONZE", 20, new int[] { 2, 8, 6, 2 }, 10);
-		armorSetISInvar = EnumHelper.addArmorMaterial("IS_INVAR", 25, new int[] { 3, 8, 5, 3 }, 20);
+		armorSetISCastIron = EnumHelper.addArmorMaterial("IS_CAST_IRON", 25, new int[] { 3, 8, 5, 3 }, 20);
 		armorSetISHardenedSteel = EnumHelper.addArmorMaterial("IS_HA_STEEL", 30, new int[] { 3, 8, 6, 3 }, 20);
 		armorSetISOsmium = EnumHelper.addArmorMaterial("IS_IRON", 33, new int[] { 4, 8, 6, 4 }, 25);
 		armorSetISUnstableSteel = EnumHelper.addArmorMaterial("IS_UN_STEEL", 37, new int[] { 4, 9, 7, 4 }, 30);
@@ -349,7 +351,9 @@ public class IronSuits {
 		legsExoSteel = new ArmorSetExo(armorSetISSteel, 0, 2, "exo_steel_legs");
 		bootsExoSteel = new ArmorSetExo(armorSetISSteel, 0, 3, "exo_steel_boots");
 		
-		helmetLightGold = new ArmorSetLight(armorSetISGold, 0, 0, "light_gold_helmet");
+		helmetReinforcedBronze = new ArmorSetReinforced(armorSetISReinforcedBronze, 0, 0, "reinforced_bronze_helmet");
+		chestReinforcedBronze = new ArmorSetReinforced(armorSetISReinforcedBronze, 0, 1, "reinforced_bronze_chest");
+		legsReinforcedBronze = new ArmorSetReinforced(armorSetISReinforcedBronze, 0, 2, "reinforced_bronze_legs");
 
 		/**
 		 * World Generation
@@ -365,7 +369,8 @@ public class IronSuits {
 		 * Blocks
 		 */
 		assemblyTable = new BlockAssemblyTable(Material.iron, "assembly_table");
-		assemblyDesk = new BlockAssemblyDesk(Material.iron, "assembly_desk");
+		assemblyDeskIdle = new BlockAssemblyDesk(Material.iron, "assembly_desk", false);
+		assemblyDeskActive = new BlockAssemblyDesk(Material.iron, "assembly_desk", true);
 		alloySmelteryIdle = new BlockAlloySmeltery(Material.iron, "alloy_smeltery_idle", false);
 		alloySmelteryActive = new BlockAlloySmeltery(Material.iron, "alloy_smeltery_active", true);
 		grinder = new BlockGrinder(Material.iron, "grinder");
@@ -488,7 +493,8 @@ public class IronSuits {
 		 * Register Blocks
 		 */
 		registerBlock(assemblyTable);
-		registerBlock(assemblyDesk);
+		registerBlock(assemblyDeskIdle);
+		registerBlock(assemblyDeskActive);
 		registerBlock(ironCraftingTable);
 		registerBlock(oreOsmium);
 		registerBlock(oreCopper);
@@ -531,8 +537,10 @@ public class IronSuits {
 		registerItem(chestExoSteel);
 		registerItem(legsExoSteel);
 		registerItem(bootsExoSteel);
-		
-		registerItem(helmetLightGold);
+
+		registerItem(helmetReinforcedBronze);
+		registerItem(chestReinforcedBronze);
+		registerItem(legsReinforcedBronze);
 		
 
 		/**

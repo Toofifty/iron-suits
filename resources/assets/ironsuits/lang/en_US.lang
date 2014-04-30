@@ -6,7 +6,7 @@ tile.osmium_block.name=Block of Osmium
 tile.alloy_smeltery_idle.name=Alloy Smeltery
 tile.grinder.name=Grinder
 tile.assembly_table.name=Assembly Table
-tile.assembly_desk.name=Assembly Desk
+tile.assembly_desk_idle.name=Assembly Desk
 
 item.grinder_head.name=Grinder Head
 item.steel_ingot.name=Steel Ingot
@@ -37,6 +37,14 @@ item.exo_steel_legs.name=Steel Exo Legs
 item.exo_steel_boots.name=Steel Exo Boots
 
 item.light_gold_helmet.name=Light Gold Helmet
+item.light_gold_chest.name=Light Gold Cuirass
+item.light_gold_legs.name=Light Gold Legs
+item.light_gold_boots.name=Light Gold Boots
+
+item.reinforced_bronze_helmet.name=Reinforced Bronze Great Helm
+item.reinforced_bronze_chest.name=Reinforced Bronze Chestplate
+item.reinforced_bronze_legs.name=Reinforced Bronze Platelegs
+item.reinforced_bronze_boots.name=Reinforced Bronze Hardboots
 
 itemGroup.IronSuits.name=Iron Suits
 container.alloy_smeltery=Alloy Smeltery

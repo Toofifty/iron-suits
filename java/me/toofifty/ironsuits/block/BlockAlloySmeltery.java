@@ -140,7 +140,7 @@ public class BlockAlloySmeltery extends BlockContainer {
 	
     @SideOnly(Side.CLIENT)
     public Item getItem(World par1World, int par2, int par3, int par4) {
-        return Item.getItemFromBlock(Blocks.furnace);
+        return Item.getItemFromBlock(IronSuits.alloySmelteryIdle);
     }
 }
 

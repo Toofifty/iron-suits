@@ -1,9 +1,6 @@
 package me.toofifty.ironsuits.common;
 
-import me.toofifty.ironsuits.model.ModelArmorBase;
-import net.minecraft.command.ICommandManager;
-import net.minecraft.command.ServerCommandManager;
-import net.minecraft.server.MinecraftServer;
+import me.toofifty.ironsuits.model.ModelArmor;
 import net.minecraftforge.common.MinecraftForge;
 
 public class CommonProxy {
@@ -17,7 +14,7 @@ public class CommonProxy {
 		
 	}
 	
-	public ModelArmorBase getArmorModel(int id) {
+	public ModelArmor getArmorModel(int id) {
 		return null;
 	}
 

@@ -1,20 +1,15 @@
 package me.toofifty.ironsuits.armor;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import me.toofifty.ironsuits.common.IronSuits;
-import me.toofifty.ironsuits.model.ModelArmorBase;
+import me.toofifty.ironsuits.model.ModelArmor;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -47,7 +42,7 @@ public class ArmorBase extends ItemArmor {
 		return IronSuits.ID + ":textures/models/armor/" + this.name + ".png";
 	}
 
-	public ModelArmorBase armorModel;
+	public ModelArmor armorModel;
 
 	@Override
 	@SideOnly(Side.CLIENT)

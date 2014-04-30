@@ -1,0 +1,68 @@
+// Defaults:
+// "rpoint": {0, 0, 0} (Rotation point)
+// "mirror": "False" (Doesn't work anyway)
+// 
+// Usage:
+// "texture": {x, y},
+// "box": {x, y, z, dx, dy, dz}
+// 
+// 	Possible groups:
+// 		bipedBody
+// 		bipedCloak
+// 		bipedEars
+// 		bipedHead
+// 		bipedHeadwear
+// 		bipedLeftArm
+// 		bipedLeftLeg
+// 		bipedRightArm
+// 		bipedRightLeg
+//
+// Naming of shapes is irrelevant.
+
+{
+	"bipedHead": { 
+		"rightside": {
+			"texture": {46, 22},
+			"box": {4, -2, -4, 1, 2, 8}
+		},
+		"leftside": {
+			"texture": {46, 22},
+			"box": {-5, -2, -4, 1, 2, 8}
+		},
+		"frontforehead": {
+			"texture": {13, 23},
+			"box": {-1, -9, -5, 2, 6, 1}
+		},
+		"frontbottom": {
+			"texture": {20, 26},
+			"box": {-5, -2, -4, 10, 2, 1}
+		},
+		"frontmiddle": {
+			"texture": {0, 18},
+			"box": {-2, -3, -6, 4, 3, 2}
+		},
+		"top": {
+			"texture": {0, 23},
+			"box": {-1, -9, -4, 2, 1, 8}
+		},
+		"top1": {
+			"texture": {0, 16},
+			"box": {-2, -9, -2, 4, 1, 1}
+		},
+		"top2": {
+			"texture": {0, 16},
+			"box": {-2, -9, 0, 4, 1, 1}
+		},
+		"top3": {
+			"texture": {0, 16},
+			"box": {-2, -9, 2, 4, 1, 1}
+		},
+		"back": {
+			"texture": {1, 23},
+			"box": {-1, -9, 4, 1, 2, 8}
+		},
+		"backbottom": {
+			"texture": {20, 29},
+			"box": {-5, -2, 4, 10, 2, 1}
+		}
+}

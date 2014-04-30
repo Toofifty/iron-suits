@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<bipedHead>
+	<cuboid name="rightside" poo=1>
+		<texture x=46></texture>
+		<box>
+			<pos x=4 y=-2 z=-4></pos>
+			<size x=1 y=2 z=8></size>
+			<mirror>False</mirror>
+			<rpoint x=0 y=0 z=0></rpoint>
+		</box>
+	</cuboid>
+	<cuboid name="leftside">
+		<texture x=46 y=22></texture>
+		<box>
+			<pos x=-5 y=-2 z=-4></pos>
+			<size x=1 y=2 z=8></size>
+		</box>
+	</cuboid>
+	<cuboid name="frontforehead">
+		<texture x=13 y=23></texture>
+		<box>
+			<pos x=-1 y=-9 z=-5></pos>
+			<size x=2 y=6 z=1></size>
+		</box>
+	</cuboid>
+	<cuboid name="frontbottom">
+		<texture x=20 y=26></texture>
+		<box>
+			<pos x=-5 y=-2 z=-4></pos>
+			<size x=10 y=2 z=1></size>
+		</box>
+	</cuboid>
+	<cuboid name="frontmiddle">
+		<texture x=0 y=18></texture>
+		<box>
+			<pos x=-2 y=-3 z=-6></pos>
+			<size x=4 y=3 z=2></size>
+		</box>
+	</cuboid>
+	<cuboid name="top">
+		<texture x=0 y=23></texture>
+		<box>
+			<pos x=-1 y=-9 z=-4></pos>
+			<size x=2 y=1 z=8></size>
+		</box>
+	</cuboid>
+	<cuboid name="top1">
+		<texture x=0 y=16></texture>
+		<box>
+			<pos x=-2 y=-9 z=-2></pos>
+			<size x=4 y=1 z=1></size>
+		</box>
+	</cuboid>
+	<cuboid name="top2">
+		<texture x=0 y=16></texture>
+		<box>
+			<pos x=-2 y=-9 z=-2></pos>
+			<size x=4 y=1 z=1></size>
+		</box>
+	</cuboid>
+	<cuboid name="top3">
+		<texture x=0 y=16></texture>
+		<box>
+			<pos x=-2 y=-9 z=-2></pos>
+			<size x=4 y=1 z=1></size>
+		</box>
+	</cuboid>
+	<cuboid name="back">
+		<texture x=1 y=23></texture>
+		<box>
+			<pos x=-1 y=-9 z=4></pos>
+			<size x=1 y=2 z=8></size>
+		</box>
+	</cuboid>
+	<cuboid name="backbottom">
+		<texture x=20 y=29></texture>
+		<box>
+			<pos x=-5 y=-2 z=-4></pos>
+			<size x=10 y=2 z=1></size>
+		</box>
+	</cuboid>
+</bipedHead>
