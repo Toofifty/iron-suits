@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ironsuits",
+  "name": "Toofifty's Iron Suits",
+  "description": "",
+  "version": "0.1",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Toofifty"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

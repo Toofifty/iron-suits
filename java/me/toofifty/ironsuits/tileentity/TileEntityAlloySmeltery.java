@@ -238,7 +238,7 @@ public class TileEntityAlloySmeltery extends TileEntity implements ISidedInvento
 	
 	
 	/**
-	 * Slow the furnace down when there's extra items
+	 * Slow the furnace down when there's extra item
 	 * @return 0-4
 	 */
 	public int getNumberOfItems() {
